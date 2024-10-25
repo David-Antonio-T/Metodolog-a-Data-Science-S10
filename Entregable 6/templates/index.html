@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictor de Supervivencia del Titanic</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="upload-card">
+            <h1>Predictor de Supervivencia del Titanic</h1>
+            <p class="description">Sube un archivo CSV con los datos de los pasajeros para realizar predicciones</p>
+            
+            <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+                <div class="file-input-container">
+                    <input type="file" name="file" id="file" class="file-input" accept=".csv">
+                    <label for="file" class="file-label">
+                        <span class="file-icon">📁</span>
+                        <span class="file-text">Seleccionar archivo CSV</span>
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Analizar Datos</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Análisis - Titanic</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container results-container">
+        <h1>Resultados del Análisis</h1>
+        
+        <div class="summary-cards">
+            <div class="card">
+                <h3>Total Pasajeros</h3>
+                <p class="number">{{ result['Total'] | default(0) }}</p>
+            </div>
+            <div class="card success">
+                <h3>Sobrevivientes</h3>
+                <p class="number">{{ result['Sobrevivientes'] | default(0) }}</p>
+                <p class="percentage">{{ result['Sobrevivientes %'] | default(0) | round(2) }}%</p>
+            </div>
+            <div class="card danger">
+                <h3>Fallecidos</h3>
+                <p class="number">{{ result['Fallecidos'] | default(0) }}</p>
+                <p class="percentage">{{ result['Fallecidos %'] | default(0) | round(2) }}%</p>
+            </div>
+        </div>
+
+        <div class="graph-section">
+            <h2>Distribución General</h2>
+            <div class="graph-container">
+                <img src="{{ graph_url }}" alt="Gráfico de Sobrevivientes vs Fallecidos" class="graph">
+            </div>
+        </div>
+
+        <div class="statistics-section">
+            <div class="stat-card">
+                <h2>Estadísticas de Sobrevivientes</h2>
+                <table class="stats-table">
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                    </tr>
+                    <tr>
+                        <td>Promedio de Edad</td>
+                        <td>{{ result['Statistics']['Sobrevivientes']['Promedio de Edad'] | default(0) | round(2) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Promedio de Familiares</td>
+                        <td>{{ result['Statistics']['Sobrevivientes']['Promedio de Familiares a Bordo (SibSp + Parch)'] | default(0) | round(2) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Promedio de Tarifa</td>
+                        <td>${{ result['Statistics']['Sobrevivientes']['Promedio de Tarifa'] | default(0) | round(2) }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="stat-card">
+                <h2>Estadísticas de Fallecidos</h2>
+                <table class="stats-table">
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                    </tr>
+                    <tr>
+                        <td>Promedio de Edad</td>
+                        <td>{{ result['Statistics']['Fallecidos']['Promedio de Edad'] | default(0) | round(2) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Promedio de Familiares</td>
+                        <td>{{ result['Statistics']['Fallecidos']['Promedio de Familiares a Bordo (SibSp + Parch)'] | default(0) | round(2) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Promedio de Tarifa</td>
+                        <td>${{ result['Statistics']['Fallecidos']['Promedio de Tarifa'] | default(0) | round(2) }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="graph-section">
+            <h2>Distribución por Sexo</h2>
+            <div class="graph-container">
+                <img src="{{ graph_sex_url }}" alt="Gráfico de Distribución por Sexo" class="graph">
+            </div>
+        </div>
+
+        <a href="/" class="back-btn">↩</a>
+    </div>
+</body>
+</html>
